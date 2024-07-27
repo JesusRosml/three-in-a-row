@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Square } from './Square';
 import { calculateWinner } from '../helpers/calculateWinner';
+import { renderSquaresBoard } from '../helpers/renderSquaresBoard';
 
 export const Board = ({ xIsNext, squares, onPlay }) => {
     
@@ -22,26 +22,14 @@ export const Board = ({ xIsNext, squares, onPlay }) => {
         status = `Siguiente jugador: ${ ( xIsNext ) ? 'X' : 'O' }`;
     }
 
+    console.log( winner )
+
     return (
         <>
-            <div className="mb-3">{ status }</div>
-            <div className="clearfix">
-                <Square value={ squares[0] } onSquareClick={ () => handleClick( 0 ) }  />
-                <Square value={ squares[1] } onSquareClick={ () => handleClick( 1 ) } />
-                <Square value={ squares[2] } onSquareClick={ () => handleClick( 2 ) } />
-            </div>
+            <div className="mb-3 text-white font-bold font-mono text-xl">{ status }</div>
+            
+            { renderSquaresBoard( squares, handleClick ) }
 
-            <div className="clearfix">
-                <Square value={ squares[3] } onSquareClick={ () => handleClick( 3 ) } />
-                <Square value={ squares[4] } onSquareClick={ () => handleClick( 4 ) }/>
-                <Square value={ squares[5] } onSquareClick={ () => handleClick( 5 ) }/>
-            </div>
-
-            <div className="clearfix">
-                <Square value={ squares[6] } onSquareClick={ () => handleClick( 6 ) }  />
-                <Square value={ squares[7] } onSquareClick={ () => handleClick( 7 ) } />
-                <Square value={ squares[8] } onSquareClick={ () => handleClick( 8 ) } />
-            </div>
         </>
     )
 }
